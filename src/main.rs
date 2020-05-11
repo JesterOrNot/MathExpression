@@ -24,7 +24,7 @@ impl CommandLineTool for App {
             (Operator, Color::Blue, r"\+|-|/|\*\*?|\^"),
             (Paren, Color::Magenta, r"\(|\)"),
             (Number, Color::Yellow, r"[1-9][0-9]*(?:\.[0-9]*)?"),
-            (Function, Color::Cyan, r"log|sqrt")
+            (Function, Color::Cyan, r"log|sqrt|abs")
         );
         parser(TheLexer::lexer(string));
     }

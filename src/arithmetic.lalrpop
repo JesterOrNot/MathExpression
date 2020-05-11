@@ -21,7 +21,8 @@ pub Term = {
     Num,
     "(" <Expr> ")",
     "log" "(" <l:Expr> "," <r:Expr> ")" => l.log(r),
-    "sqrt" "(" <l:Expr> ")" => l.sqrt()
+    "sqrt" "(" <l:Expr> ")" => l.sqrt(),
+    "abs" "(" <l:Expr> ")" => l.abs()
 };
 
 Num: f64 = {

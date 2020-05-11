@@ -16,8 +16,9 @@ impl CommandLineTool for App {
         syntax_highlight_gen!(
             TheLexer,
             parser,
-            (Operator, Color::Blue, r"\+|-|/|\*"),
-            (Number, Color::Yellow, r"[0-9]"),
+            (Operator, Color::Blue, r"\+|-|/|\*\*?|\^"),
+            (Paren, Color::Magenta, r"\(|\)"),
+            (Number, Color::Yellow, r"[\+-]?[1-9][0-9]*(?:\.[0-9]*)?"),
             (NoHighlight, Color::White, r"[a-zA-Z_$]+")
         );
         parser(TheLexer::lexer(string));

@@ -1,9 +1,14 @@
 #[macro_use]
 extern crate lalrpop_util;
 use synterm::{syntax_highlight_gen, Color, CommandLineTool};
+
 lalrpop_mod!(pub arithmetic);
 
 struct App;
+
+fn main() {
+    App.start();
+}
 
 impl CommandLineTool for App {
     fn evaluator_function(line: &String) -> String {
@@ -23,8 +28,4 @@ impl CommandLineTool for App {
         );
         parser(TheLexer::lexer(string));
     }
-}
-
-fn main() {
-    App.start();
 }

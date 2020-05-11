@@ -7,10 +7,10 @@ struct App;
 
 impl CommandLineTool for App {
     fn evaluator_function(line: &String) -> String {
-        arithmetic::TermParser::new()
-            .parse(&format!("({})", line))
-            .unwrap()
-            .to_string()
+        match arithmetic::TermParser::new().parse(&format!("({})", line)) {
+            Ok(n) => n.to_string(),
+            Err(n) => format!("Error: {}!", n).to_string()
+        }
     }
     fn syntax_highlight(string: &str) {
         syntax_highlight_gen!(
@@ -18,8 +18,8 @@ impl CommandLineTool for App {
             parser,
             (Operator, Color::Blue, r"\+|-|/|\*\*?|\^"),
             (Paren, Color::Magenta, r"\(|\)"),
-            (Number, Color::Yellow, r"[\+-]?[1-9][0-9]*(?:\.[0-9]*)?"),
-            (NoHighlight, Color::White, r"[a-zA-Z_$]+")
+            (Number, Color::Yellow, r"[1-9][0-9]*(?:\.[0-9]*)?"),
+            (Function, Color::Cyan, r"log|sqrt")
         );
         parser(TheLexer::lexer(string));
     }

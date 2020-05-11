@@ -1,7 +1,29 @@
-#[macro_use] extern crate lalrpop_util;
+#[macro_use]
+extern crate lalrpop_util;
+use synterm::{syntax_highlight_gen, Color, CommandLineTool};
+lalrpop_mod!(pub arithmetic);
 
-lalrpop_mod!(pub paren); // synthesized by LALRPOP
+struct App;
+
+impl CommandLineTool for App {
+    fn evaluator_function(line: &String) -> String {
+        arithmetic::TermParser::new()
+            .parse(&format!("({})", line))
+            .unwrap()
+            .to_string()
+    }
+    fn syntax_highlight(string: &str) {
+        syntax_highlight_gen!(
+            TheLexer,
+            parser,
+            (Operator, Color::Blue, r"\+|-|/|\*"),
+            (Number, Color::Yellow, r"[0-9]"),
+            (NoHighlight, Color::White, r"[a-zA-Z_$]+")
+        );
+        parser(TheLexer::lexer(string));
+    }
+}
 
 fn main() {
-    println!("{}", paren::TermParser::new().parse("((((22))))").unwrap() + 10)
+    App.start();
 }

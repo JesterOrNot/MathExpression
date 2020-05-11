@@ -1,0 +1,3 @@
+tasks:
+  - init: echo foo | cargo run
+    command: cargo run

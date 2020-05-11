@@ -1,5 +1,5 @@
 [package]
-name = "MathExpression"
+name = "math_expr"
 version = "0.1.0"
 authors = ["Sean Hellum <seanhellum45@gmail.com>"]
 edition = "2018"
@@ -12,3 +12,5 @@ features = ["lexer"]
 [dependencies]
 lalrpop-util = "0.18.1"
 regex = "1"
+synterm = { git = "https://github.com/JesterOrNot/SynTerm.git" }
+logos = "0.11.4"

@@ -10,5 +10,5 @@ features = ["lexer"]
 
 [dependencies]
 lalrpop-util = "0.18.1" # For the parser
-synterm = { git = "https://github.com/JesterOrNot/SynTerm.git" } # For the awesomee REPL
+synterm = { git = "https://github.com/JesterOrNot/SynTerm.git" } # For the awesome REPL
 logos = "0.11.4" # A Requirement of synterm as it makes *heavy* use of macros

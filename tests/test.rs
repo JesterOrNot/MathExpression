@@ -30,7 +30,6 @@ fn division() {
     assert_eq!(parser.parse("(-6/2)").unwrap(), -3.0);
     #[should_panic]
     assert_eq!(parser.parse("(6/0)").unwrap(), 0.0);
-
 }
 
 #[test]

@@ -10,21 +10,21 @@ pub Expr: f64 = {
 };
 
 Factor: f64 = {
-    <l:Factor> "**" <r:Term> => f64::powf(l, r),
-    <l:Factor> "^" <r:Term> => f64::powf(l, r),
-    <l:Factor> "*" <r:Term> => l * r,
-    <l:Factor> "/" <r:Term> => l / r,
+    <num1:Factor> "**" <num2:Term> => f64::powf(num1, num2),
+    <num1:Factor> "^" <num2:Term> => f64::powf(num1, num2),
+    <num1:Factor> "*" <num2:Term> => num1 * num2,
+    <num1:Factor> "/" <num2:Term> => num1 / num2,
     Term,
 };
 
 pub Term = {
     Num,
     "(" <Expr> ")",
-    "log" "(" <l:Expr> "," <r:Expr> ")" => l.log(r),
-    "sqrt" "(" <l:Expr> ")" => l.sqrt(),
-    "abs" "(" <l:Expr> ")" => l.abs()
+    "log" "(" <base:Expr> "," <sol:Expr> ")" => base.log(sol),
+    "sqrt" "(" <num:Expr> ")" => num.sqrt(),
+    "abs" "(" <num:Expr> ")" => num.abs()
 };
 
 Num: f64 = {
-    r"[1-9][0-9]*(?:\.[0-9]*)?" => f64::from_str(<>).unwrap()
+    r"-?[1-9][0-9]*(?:\.[0-9]*)?" => f64::from_str(<>).unwrap(),
 };

@@ -14,7 +14,7 @@ impl CommandLineTool for App {
     fn evaluator_function(line: &String) -> String {
         match arithmetic::TermParser::new().parse(&format!("({})", line)) {
             Ok(n) => n.to_string(),
-            Err(n) => format!("Error: {}!", n).to_string()
+            Err(n) => format!("Error: {}!", n).to_string(),
         }
     }
     fn syntax_highlight(string: &str) {
